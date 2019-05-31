@@ -13,18 +13,28 @@ body {
 
 header {
   background-color: #1F1F3D;
+  height: 100%
+  width: 100%;
 }
 
 h1 {
   color: #FFFFFF;
+  display: flex;
 }
 
 span {
   color: #FFC30C;
 }
 
+.header__image {
+  background-color: #C8D3D9;
+  height: 30px;
+  width: 30px;
+}
+
 .header__input__search__container {
   display: flex;
+  float: right;
   justify-content: space-between;
 }
 
@@ -50,16 +60,23 @@ label {
 }
 
 button {
+  background-color: #1F1F3D;
   border: none;
-  border-radius: 5px;
+  border-radius: 2px;
+  color: #FFFFFF;
   display: block;
+  font-size: 1em;
   height: 30px;
-  margin: 30px;
+  margin: 15px;
   width: 90%
 }
 
 button:hover {
   background-color: #F04924;
+}
+
+.bottom__button {
+  border-top: 2px solid red;
 }
 
 /*Main*/
@@ -71,5 +88,27 @@ main {
 /*Article*/
 
 article {
-  background-color: #F3F6F7;
+  background-color: #FFFFFF;
+  border: 2px solid #C8D3D9;
+  margin: 10px;
+}
+
+h2 {
+  border-bottom: 2px solid #C8D3D9;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+
+.article__image {
+  display: inline;
+}
+
+p {
+  display: inline;
+}
+
+.article__div__one,
+.article__div__two,
+.article__div__three {
+  margin: 30px 0px;
 }
