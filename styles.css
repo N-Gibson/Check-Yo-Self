@@ -112,3 +112,27 @@ p {
 .article__div__three {
   margin: 30px 0px;
 }
+
+.article__section__footer {
+  border-top: 2px solid #C8D3D9;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.article__section__urgent,
+.article__section__delete {
+  display: inline;
+}
+
+.article__image__urgent,
+.article__image__delete {
+  display: block;
+  margin: auto;
+}
+
+.article__section__p__urgent,
+.article__section__p__delete {
+  display: block;
+  margin: 0;
+}
