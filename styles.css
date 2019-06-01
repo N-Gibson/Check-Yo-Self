@@ -6,6 +6,7 @@
 
 body {
   height: 100vh;
+  margin: 0;
   width: 100%;
 }
 
@@ -13,32 +14,23 @@ body {
 
 header {
   background-color: #1F1F3D;
-  height: 100%
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
   width: 100%;
 }
 
 h1 {
   color: #FFFFFF;
   display: inline-flex;
-  padding-left: 10px;
+  font-size: 3em;
+  height: 30px;
+  margin-top: 25px;
+  padding-left: 20px;
 }
 
 span {
   color: #FFC30C;
-}
-
-.header__image {
-  background-color: #C8D3D9;
-  height: 30px;
-  width: 30px;
-}
-
-.header__input__search__container {
-  display: inline-flex;
-  float: right;
-  height: 50px;
-  margin-top: 10px;
-  padding-right: 10px
 }
 
 /*Images*/
@@ -46,6 +38,25 @@ span {
 .svg {
   height: 20px;
   width: 20px;
+}
+
+.header__image {
+  background-color: #C8D3D9;
+  height: 45px;
+  padding: 10px;
+  width: 45px;
+}
+
+.header__input {
+  height: 45px;
+  width: 350px;
+}
+
+.header__input__search__container {
+  display: inline-flex;
+  height: 50px;
+  margin-top: 30px;
+  padding-right: 20px
 }
 
 /*Aside*/

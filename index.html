@@ -13,11 +13,18 @@
     </div>
   </header>
   <aside>
-    <label for="task-title"> Task Title </label>
-    <input class="aside__input" type="text" name="task-title" alt="input to add a new idea title"></input>
-    <p class="aside__append__idea"></p>
-    <label for="task-item"> Task Item </label>
-    <input class="aside__input" type="text" name="task-item" alt="input to add a new task"></input>
+    <div class="aside__label__button__title">
+      <label for="task-title"> Task Title </label>
+      <input class="aside__input" type="text" name="task-title" alt="input to add a new idea title"></input>
+    </div>
+    <div class="aside__new__idea">
+      <input class="aside__image__delete svg" type="image" src="images/delete.svg" alt="delete the new task"></input>
+      <p class="aside__append__idea"> Don't ever play your self. </p>
+    </div>
+    <div class="aside__label__button__item">
+      <label for="task-item"> Task Item </label>
+      <input class="aside__input" type="text" name="task-item" alt="input to add a new task"></input>
+    </div>
     <button class="aside__button" alt="make a new task list"> Make Task List </button>
     <button class="aside__button" alt="clear all of the current ideas"> Clear All </button>
     <button class="aside__button bottom__button" alt="filter ideas by urgency"> Filter By Urgency </button>
