@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="styles.css">
   <link rel="sytlesheet" href="normalize.css">
+  <link rel="stylesheet" type="text/css" href="styles.css">
   <title> Check Yo' Self </title>
 </head>
 <body>
@@ -10,25 +10,30 @@
     <h1> Check <span class="h1__span"> Yo' </span> Self </h1>
     <div class="header__input__search__container">
       <input class="header__image svg" type="image" src="images/search.svg" alt="search input button"></input>
-      <input class="header__input" type="text" name="search" alt="search input area"></input>
+      <input class="header__input" type="text" name="search" placeholder="Search" alt="search input area"></input>
     </div>
   </header>
   <aside>
     <div class="aside__label__button__title">
       <label for="task-title"> Task Title </label>
-      <input class="aside__input" type="text" name="task-title" alt="input to add a new idea title"></input>
+      <input class="aside__input__task" type="text" name="task-title" alt="input to add a new idea title"></input>
     </div>
     <div class="aside__new__idea">
       <input class="aside__image__delete svg" type="image" src="images/delete.svg" alt="delete the new task"></input>
       <p class="aside__append__idea"> Don't ever play your self. </p>
     </div>
-    <div class="aside__label__button__item">
+    <section class="aside__label__button__item">
       <label for="task-item"> Task Item </label>
-      <input class="aside__input" type="text" name="task-item" alt="input to add a new task"></input>
-    </div>
+      <div class="aside__input__task__container">
+        <input class="aside__add__task" type="text" name="task-item" alt="input to add a new task"></input>
+        <input class="aside__image__plus svg" type="image" src="images/plus.svg" alt="add a new task button">
+      </div>
+    </section>
     <button class="aside__button" alt="make a new task list"> Make Task List </button>
     <button class="aside__button" alt="clear all of the current ideas"> Clear All </button>
-    <button class="aside__button bottom__button" alt="filter ideas by urgency"> Filter By Urgency </button>
+    <div class="bottom__button__container">
+      <button class="aside__button bottom__button" alt="filter ideas by urgency"> Filter By Urgency </button>
+    </div>
   </aside>
   <main>
     <article>

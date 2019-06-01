@@ -42,13 +42,18 @@ span {
 
 .header__image {
   background-color: #C8D3D9;
+  border-radius: 2px 0px 0px 2px;
   height: 45px;
   padding: 10px;
   width: 45px;
 }
 
 .header__input {
+  border: none;
+  border-radius: 0px 2px 2px 0px;
+  font-size: 1em;
   height: 45px;
+  padding: 10px;
   width: 350px;
 }
 
@@ -62,7 +67,9 @@ span {
 /*Aside*/
 
 aside {
+  align-self: center;
   background-color: #597A8B;
+  border-right: 2px solid #3F6477;
   float: left;
   height: 100vh;
   width: 30%;
@@ -89,14 +96,53 @@ button:hover {
   background-color: #F04924;
 }
 
-.bottom__button {
-  border-top: 2px solid red;
+.aside__input__task {
+  border: 2px solid #1E1F3E;
+  border-radius: 2px;
+  height: 45px;
+  width: 100%;
+}
+
+.aside__add__task {
+  border: none;
+  border-radius: 2px;
+  height: 45px;
+  width: 100%;
+}
+
+.aside__label__button__title,
+.aside__new__idea,
+.aside__label__button__item {
+  margin: 10px 20px;
+}
+
+.aside__input__task__container {
+  border: 2px solid #1E1F3E;
+  border-radius: 2px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.aside__image__plus {
+  background-color: #1F1D3D;
+  height: 45px;
+  padding: 10px;
+  width: 45px;
+}
+
+.aside__button {
+  margin: 30px auto 30px auto;
+}
+
+.bottom__button__container {
+  border-top: 2px solid #3F6477;
 }
 
 /*Main*/
 
 main {
   display: flex;
+  flex-wrap: wrap;
 }
 
 /*Article*/
