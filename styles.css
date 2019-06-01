@@ -19,7 +19,8 @@ header {
 
 h1 {
   color: #FFFFFF;
-  display: flex;
+  display: inline-flex;
+  padding-left: 10px;
 }
 
 span {
@@ -33,9 +34,11 @@ span {
 }
 
 .header__input__search__container {
-  display: flex;
+  display: inline-flex;
   float: right;
-  justify-content: space-between;
+  height: 50px;
+  margin-top: 10px;
+  padding-right: 10px
 }
 
 /*Images*/
