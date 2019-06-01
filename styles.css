@@ -78,7 +78,7 @@ aside {
 }
 
 label {
-  color: #F3F6F7;
+  color: #C8D3D9;
   display: block;
 }
 
@@ -166,7 +166,7 @@ main {
 article {
   background-color: #FFFFFF;
   border: 2px solid #C8D3D9;
-  margin: 10px;
+  margin: 30px;
 }
 
 h2 {
@@ -199,6 +199,7 @@ p {
 
 .article__section__urgent,
 .article__section__delete {
+  color: #547988;
   display: inline;
 }
 
