@@ -5,6 +5,7 @@
 /*Body*/
 
 body {
+  font-family: 'Open Sans', sans-serif;
   height: 100vh;
   margin: 0;
   width: 100%;
@@ -24,8 +25,9 @@ h1 {
   color: #FFFFFF;
   display: inline-flex;
   font-size: 3em;
+  font-weight: 800;
   height: 30px;
-  margin-top: 25px;
+  margin-top: 20px;
   padding-left: 20px;
 }
 
@@ -76,7 +78,7 @@ aside {
 }
 
 label {
-  color: #FFFFFF;
+  color: #F3F6F7;
   display: block;
 }
 
@@ -96,6 +98,19 @@ button:hover {
   background-color: #F04924;
 }
 
+.aside__image__delete {
+  margin-top: 17px;
+  margin-right: 10px;
+}
+
+.aside__new__idea {
+  display: flex;
+}
+
+.aside__append__idea {
+  color: #FFFFFF;
+}
+
 .aside__input__task {
   border: 2px solid #1E1F3E;
   border-radius: 2px;
@@ -105,7 +120,7 @@ button:hover {
 
 .aside__add__task {
   border: none;
-  border-radius: 2px;
+  border-radius: 2px 0px 0px 2px;
   height: 45px;
   width: 100%;
 }
@@ -131,6 +146,7 @@ button:hover {
 }
 
 .aside__button {
+  height: 45px;
   margin: 30px auto 30px auto;
 }
 
@@ -155,6 +171,7 @@ article {
 
 h2 {
   border-bottom: 2px solid #C8D3D9;
+  font-size: 1.2em;
   padding-bottom: 10px;
   padding-left: 10px;
 }
@@ -170,7 +187,7 @@ p {
 .article__div__one,
 .article__div__two,
 .article__div__three {
-  margin: 30px 0px;
+  margin: 30px 10px;
 }
 
 .article__section__footer {
@@ -194,5 +211,6 @@ p {
 .article__section__p__urgent,
 .article__section__p__delete {
   display: block;
+  font-size: .7em;
   margin: 0;
 }
