@@ -157,8 +157,31 @@ button:hover {
 /*Main*/
 
 main {
+  border: 2px solid #476D80;
+  border-left: none;
+  border-top: none;
   display: flex;
+  height: 100%;
   flex-wrap: wrap;
+}
+
+.prompt__container {
+  background-color: #1F1E3D;
+  display: flex;
+  height: 100px;
+  margin: 30px;
+  width: 100%;
+}
+
+.main__idea__prompt {
+  color: #FFFFFF;
+  font-size: 1.7em;
+  font-weight: 800;
+  margin: auto auto auto auto;
+}
+
+.prompt__span {
+  color: #FFC30C;
 }
 
 /*Article*/

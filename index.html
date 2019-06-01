@@ -6,23 +6,20 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800&display=swap" rel="stylesheet">
   <title> Check Yo' Self </title>
 </head>
-<body>
-  <header>
+<body class="body">
+  <header class="header">
     <h1> Check <span class="h1__span"> Yo' </span> Self </h1>
     <div class="header__input__search__container">
       <input class="header__image svg" type="image" src="images/search.svg" alt="search input button"></input>
       <input class="header__input" type="text" name="search" placeholder="Search" alt="search input area"></input>
     </div>
   </header>
-  <aside>
+  <aside class="aside">
     <div class="aside__label__button__title">
       <label for="task-title"> Task Title </label>
       <input class="aside__input__task" type="text" name="task-title" alt="input to add a new idea title"></input>
     </div>
-    <div class="aside__new__idea">
-      <input class="aside__image__delete svg" type="image" src="images/delete.svg" alt="delete the new task"></input>
-      <p class="aside__append__idea"> Don't ever play your self. </p>
-    </div>
+    <div class="aside__new__idea"></div>
     <section class="aside__label__button__item">
       <label for="task-item"> Task Item </label>
       <div class="aside__input__task__container">
@@ -36,32 +33,9 @@
       <button class="aside__button bottom__button" alt="filter ideas by urgency"> Filter By Urgency </button>
     </div>
   </aside>
-  <main>
-    <article>
-      <h2> Task Title </h2>
-      <div class="article__div__one">
-        <input class="article__image__checkbox svg" type="image" src="images/checkbox.svg" alt="mark task as complete"></input>
-      <p> Don't ever play yourself. </p>
-      </div>
-      <div class="article__div__two">
-        <input class="articel__image__checkbox svg" type="image" src="images/checkbox.svg" alt="mark task as complete"></input>
-        <p> Every chance I get, I water the plants. </p>
-      </div>
-      <div class="article__div__three">
-        <input class="articel__image__checkbox svg" type="image" src="images/checkbox.svg" alt="mark task as complete"></input>
-        <p> Lion, Cloth talk. </p>
-      </div>
-      <section class="article__section__footer">
-        <div class="article__section__urgent">
-          <input class="article__image__urgent svg" type="image" src="images/urgent.svg" alt="mark task as urgent"></input>
-          <p class="article__section__p__urgent"> URGENT </p>
-        </div>
-        <div class="article__section__delete">
-          <input class="article__image__delete svg" type="image" src="images/delete.svg" alt="delete the task card"></input>
-          <p class="article__section__p__delete"> DELETE </p>
-        </div>
-      </section>
-    </article>
+  <main class="main">
   </main>
 </body>
+<script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="todo-list.js"></script>
 </html>
