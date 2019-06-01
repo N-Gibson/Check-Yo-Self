@@ -5,7 +5,9 @@
 /*Body*/
 
 body {
+  font-family: 'Open Sans', sans-serif;
   height: 100vh;
+  margin: 0;
   width: 100%;
 }
 
@@ -13,19 +15,24 @@ body {
 
 header {
   background-color: #1F1F3D;
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  width: 100%;
 }
 
 h1 {
   color: #FFFFFF;
+  display: inline-flex;
+  font-size: 3em;
+  font-weight: 800;
+  height: 30px;
+  margin-top: 20px;
+  padding-left: 20px;
 }
 
 span {
   color: #FFC30C;
-}
-
-.header__input__search__container {
-  display: flex;
-  justify-content: space-between;
 }
 
 /*Images*/
@@ -35,26 +42,55 @@ span {
   width: 20px;
 }
 
+.header__image {
+  background-color: #C8D3D9;
+  border-radius: 2px 0px 0px 2px;
+  height: 45px;
+  padding: 10px;
+  width: 45px;
+}
+
+.header__input {
+  border: none;
+  border-radius: 0px 2px 2px 0px;
+  font-size: 1em;
+  height: 45px;
+  padding: 10px;
+  width: 350px;
+}
+
+.header__input__search__container {
+  display: inline-flex;
+  height: 50px;
+  margin-top: 30px;
+  padding-right: 20px
+}
+
 /*Aside*/
 
 aside {
+  align-self: center;
   background-color: #597A8B;
+  border-right: 2px solid #3F6477;
   float: left;
   height: 100vh;
   width: 30%;
 }
 
 label {
-  color: #FFFFFF;
+  color: #F3F6F7;
   display: block;
 }
 
 button {
+  background-color: #1F1F3D;
   border: none;
-  border-radius: 5px;
+  border-radius: 2px;
+  color: #FFFFFF;
   display: block;
+  font-size: 1em;
   height: 30px;
-  margin: 30px;
+  margin: 15px;
   width: 90%
 }
 
@@ -62,14 +98,119 @@ button:hover {
   background-color: #F04924;
 }
 
+.aside__image__delete {
+  margin-top: 17px;
+  margin-right: 10px;
+}
+
+.aside__new__idea {
+  display: flex;
+}
+
+.aside__append__idea {
+  color: #FFFFFF;
+}
+
+.aside__input__task {
+  border: 2px solid #1E1F3E;
+  border-radius: 2px;
+  height: 45px;
+  width: 100%;
+}
+
+.aside__add__task {
+  border: none;
+  border-radius: 2px 0px 0px 2px;
+  height: 45px;
+  width: 100%;
+}
+
+.aside__label__button__title,
+.aside__new__idea,
+.aside__label__button__item {
+  margin: 10px 20px;
+}
+
+.aside__input__task__container {
+  border: 2px solid #1E1F3E;
+  border-radius: 2px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.aside__image__plus {
+  background-color: #1F1D3D;
+  height: 45px;
+  padding: 10px;
+  width: 45px;
+}
+
+.aside__button {
+  height: 45px;
+  margin: 30px auto 30px auto;
+}
+
+.bottom__button__container {
+  border-top: 2px solid #3F6477;
+}
+
 /*Main*/
 
 main {
   display: flex;
+  flex-wrap: wrap;
 }
 
 /*Article*/
 
 article {
-  background-color: #F3F6F7;
+  background-color: #FFFFFF;
+  border: 2px solid #C8D3D9;
+  margin: 10px;
+}
+
+h2 {
+  border-bottom: 2px solid #C8D3D9;
+  font-size: 1.2em;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+
+.article__image {
+  display: inline;
+}
+
+p {
+  display: inline;
+}
+
+.article__div__one,
+.article__div__two,
+.article__div__three {
+  margin: 30px 10px;
+}
+
+.article__section__footer {
+  border-top: 2px solid #C8D3D9;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.article__section__urgent,
+.article__section__delete {
+  display: inline;
+}
+
+.article__image__urgent,
+.article__image__delete {
+  display: block;
+  margin: auto;
+}
+
+.article__section__p__urgent,
+.article__section__p__delete {
+  display: block;
+  font-size: .7em;
+  margin: 0;
 }
