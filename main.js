@@ -88,7 +88,6 @@ function clearAllEnable() {
 } 
 
 function makeTaskListEnable() {
-  debugger;
   if(titleInput.value === '' || itemInput.value === '') {
     taskButton.disabled = true;
   } else {
@@ -153,16 +152,41 @@ function persistIdeas() {
 // Function to make new idea list on aside -- needs work
 
 function newIdeaCreator(event) {
+  if(itemInput.value === '') {
+    return
+  } else {
   newListItem.insertAdjacentHTML('afterbegin', `<input class="aside__image__delete svg" type="image" src="images/delete.svg" alt="delete the new task"></input>
       <p class="aside__append__idea"> ${itemInput.value} </p>`)
+  }
 }
 
 // Functions on main
 
 function mainAll() {
   getId(event);
+  getIndex(event);
+  deleteCard(event);
 }
 
 function getId(event) {
   return event.target.closest('.article').getAttribute('data-id');
 }
+
+function getIndex(event) {
+  var cardId = event.target.closest('.article').getAttribute('data-id')
+  var test = storageArray.findIndex(function(toDoList){
+  return toDoList.id == parseInt(cardId)
+    });
+  return test
+  }
+
+
+function deleteCard(event) {
+  if(event.target.className === 'article__image__delete') {
+  var id = getId(e);
+  var index = getIndex(e);
+  e.target.closest('.article').remove();
+  storageArray[index].deleteFromStorage(index)
+  ideaPrompter();
+    }
+  }
