@@ -7,11 +7,14 @@ class toDoList {
   }
 
   saveToStorage() {
-    localStorage.setItem('array', JSON.stringify(storageArray));
+    localStorage.setItem('storageArray', JSON.stringify(storageArray));
+    console.log(storageArray)
   }
 
   deleteFromStorage() {
-  
+    if(storageArray.length === 0) {
+      localStorage.clear();
+    }
   }
 
   updateToDo() {

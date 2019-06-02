@@ -150,6 +150,10 @@ button:hover {
   margin: 30px auto 30px auto;
 }
 
+button:disabled {
+  background-color: lightgrey;
+}
+
 .bottom__button__container {
   border-top: 2px solid #3F6477;
 }
@@ -190,6 +194,7 @@ article {
   background-color: #FFFFFF;
   border: 2px solid #C8D3D9;
   margin: 30px;
+  width: 45%;
 }
 
 h2 {
