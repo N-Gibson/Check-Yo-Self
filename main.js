@@ -10,7 +10,6 @@ var itemInput = document.querySelector('.aside__add__task');
 var plusButton = document.querySelector('.aside__image__plus');
 var taskButton = document.getElementById('make__task__list');
 var clearButton = document.getElementById('clear__all');
-
 // Event Listeners
 
 asideListen.addEventListener('click', asideAll);
@@ -19,65 +18,15 @@ plusButton.addEventListener('click', plusAll);
 taskButton.addEventListener('click', taskAll);
 clearButton.addEventListener('click', clearAll);
 titleInput.addEventListener('keyup', titleInputKeyup);
-itemInput.addEventListener('keyup', itemInputKeyup);
-
-function titleInputKeyup() {
-  makeTaskListEnable();
-  clearAllEnable();
-}
-
-function itemInputKeyup(){
-  makeTaskListEnable();
-  clearAllEnable();
-}
-
-function plusAll() {
-  newIdeaCreator(event);
-  clearTaskInput();
-}
-
-function taskAll() {
-  newListInstantiator();
-  clearTaskTitle();
-  clearTaskInput();
-}
-
-function clearAll() {
-  clearTaskInput();
-  clearTaskTitle();
-}
+// itemInput.addEventListener('keyup', itemInputKeyup);
 
 // Functions on page load
+
 makeTaskListEnable();
 clearAllEnable();
 promptToDo();
 arrayParse();
 
-function promptToDo() {
-  if(localStorage.length === 0) {
-    mainListen.insertAdjacentHTML('afterbegin', `<div class="prompt__container"><p class="main__idea__prompt"> Please create a <span class="prompt__span"> To-Do </span> List! </p> </div>`)
-  } else {
-    return
-  }
-}
-
-// Functions on aside
-
-function asideAll() {
-  // newIdeaCreator(event)
-}
-
-function clearTaskTitle() {
-  titleInput.value = '';
-  makeTaskListEnable()
-  clearAllEnable();
-}
-
-function clearTaskInput() {
-  itemInput.value = '';
-  makeTaskListEnable()
-  clearAllEnable();
-}
 
 function clearAllEnable() {
   if(titleInput.value === '' || itemInput.value === '') {
@@ -87,12 +36,76 @@ function clearAllEnable() {
   }
 } 
 
-function makeTaskListEnable() {
-  if(titleInput.value === '' || itemInput.value === '') {
-    taskButton.disabled = true;
+function arrayParse() {
+  if(localStorage.length === 0){
+    return
   } else {
-    taskButton.disabled = false;
+  var newArray = JSON.parse(localStorage.getItem('list')).map(function(toDoList){
+    return new toDoList(list.id, list.title, list.tasks, list.urgent)
+  })
+  console.log(newArray)
+  storageArray = newArray;
+  persistIdeas();
   }
+}
+
+function persistIdeas() {
+  for (var i = 0; i < storageArray.length; i++) {
+    toDoCardCreator(storageArray[i]);
+  }
+}
+
+// Title related Functions
+
+function titleInputKeyup() {
+  makeTaskListEnable();
+  clearAllEnable();
+}
+
+// Task related Functions
+
+function itemInputKeyup(){
+  makeTaskListEnable();
+  clearAllEnable();
+}
+
+// Plus button Functions
+
+function plusAll() {
+  // newIdeaCreator();
+  clearTaskInput();
+  ideaObject()
+}
+
+function ideaObject() {
+  debugger;
+  var newIdeaObject = {
+    // title: titleInput.value,
+    task: itemInput.value,
+    id: Date.now(),
+    urgent: false,
+  }
+  console.log(itemInput.value)
+  newIdeaCreator(newIdeaObject)
+}
+
+function newIdeaCreator(ideaObject) {
+  // debugger;
+  // if(itemInput.value === '' || newListItem === undefined) {
+  //   return
+  // } else {
+    console.log(ideaObject);
+  newListItem.insertAdjacentHTML('afterbegin', `<li class="li__append" data-id=${ideaObject.id}> <input class="aside__image__delete svg" type="image" src="images/delete.svg" alt="delete the new task"></input>
+      <p class="aside__append__idea"> ${ideaObject.task} </p> </li>`)
+  // }
+}
+
+// Task button Functions
+
+function taskAll() {
+  newListInstantiator();
+  clearTaskTitle();
+  clearTaskInput();
 }
 
 function newListInstantiator() {
@@ -101,6 +114,7 @@ function newListInstantiator() {
   newToDoList.saveToStorage();
   toDoCardCreator(newToDoList);
 }
+
 
 function toDoCardCreator(toDoList) {
   mainListen.insertAdjacentHTML('afterbegin', `<article class="article" data-id=${toDoList.id}>
@@ -130,63 +144,74 @@ function toDoCardCreator(toDoList) {
     </article>`)
 } 
 
-function arrayParse() {
-  if(localStorage.length === 0){
-    return
+// Clear button Functions
+
+function clearAll() {
+  clearTaskInput();
+  clearTaskTitle();
+}
+
+function clearTaskTitle() {
+  titleInput.value = '';
+  makeTaskListEnable()
+  clearAllEnable();
+}
+
+function clearTaskInput() {
+  itemInput.value = '';
+  makeTaskListEnable()
+  clearAllEnable();
+}
+
+function makeTaskListEnable() {
+  if(titleInput.value === '') {
+    taskButton.disabled = true;
   } else {
-  var newArray = JSON.parse(localStorage.getItem('list')).map(function(toDoList){
-    return new toDoList(list.id, list.title, list.tasks, list.urgent)
-  })
-  console.log(newArray)
-  storageArray = newArray;
-  persistIdeas();
+    taskButton.disabled = false;
   }
 }
 
-
-function persistIdeas() {
-  for (var i = 0; i < storageArray.length; i++) {
-    toDoCardCreator(storageArray[i]);
+function promptToDo() {
+  if(localStorage.length === 0) {
+    mainListen.insertAdjacentHTML('afterbegin', `<div class="prompt__container"><p class="main__idea__prompt"> Please create a <span class="prompt__span"> To-Do </span> List! </p> </div>`)
+  } else {
+    return
   }
 }
-// Function to make new idea list on aside -- needs work
 
-function newIdeaCreator(event) {
-  if(itemInput.value === '') {
-    return
-  } else {
-  newListItem.insertAdjacentHTML('afterbegin', `<input class="aside__image__delete svg" type="image" src="images/delete.svg" alt="delete the new task"></input>
-      <p class="aside__append__idea"> ${itemInput.value} </p>`)
-  }
+// Functions on aside
+
+function asideAll() {
+  // newIdeaCreator(event)
 }
 
 // Functions on main
 
-function mainAll() {
-  getId(event);
-  getIndex(event);
-  deleteCard(event);
-}
+// function mainAll() {
+//   getId(event);
+//   getIndex(event);
+//   deleteCard(event);
+// }
 
-function getId(event) {
-  return event.target.closest('.article').getAttribute('data-id');
-}
+// function getId(event) {
+//   return event.target.closest('.article').getAttribute('data-id');
+// }
 
-function getIndex(event) {
-  var cardId = event.target.closest('.article').getAttribute('data-id')
-  var test = storageArray.findIndex(function(toDoList){
-  return toDoList.id == parseInt(cardId)
-    });
-  return test
-  }
+// function getIndex(event) {
+//   var cardId = event.target.closest('.article').getAttribute('data-id')
+//   var test = storageArray.findIndex(function(toDoList){
+//   return toDoList.id == parseInt(cardId)
+//     });
+//   return test
+//   }
 
 
-function deleteCard(event) {
-  if(event.target.className === 'article__image__delete') {
-  var id = getId(e);
-  var index = getIndex(e);
-  e.target.closest('.article').remove();
-  storageArray[index].deleteFromStorage(index)
-  ideaPrompter();
-    }
-  }
+// function deleteCard(event) {
+//   if(event.target.className === 'article__image__delete') {
+//   var id = getId(e);
+//   var index = getIndex(e);
+//   e.target.closest('.article').remove();
+//   storageArray[index].deleteFromStorage(index)
+//   ideaPrompter();
+//     }
+//   }

@@ -104,7 +104,8 @@ button:hover {
 }
 
 .aside__new__idea {
-  display: flex;
+  list-style-type: none;
+  padding: 0px;
 }
 
 .aside__append__idea {
