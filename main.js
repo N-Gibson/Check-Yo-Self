@@ -188,7 +188,7 @@ function promptToDo() {
 function mainAll() {
   // getId(event);
   // getIndex(event);
-  deleteFromStorage();
+  // deleteFromStorage();
   deleteCard(event);
 }
 

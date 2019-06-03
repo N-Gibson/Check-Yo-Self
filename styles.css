@@ -165,9 +165,11 @@ main {
   border: 2px solid #476D80;
   border-left: none;
   border-top: none;
+  columns: 2 auto;
   display: flex;
+  flex-flow: column wrap;
+  /*flex-wrap: wrap;*/
   height: 100%;
-  flex-wrap: wrap;
 }
 
 .prompt__container {
