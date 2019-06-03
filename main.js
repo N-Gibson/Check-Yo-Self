@@ -64,6 +64,7 @@ function clearTaskInput() {
 // }
 
 // Functions on page load
+  // arrayParse();
   makeTaskListEnable();
   clearAllEnable();
   promptToDo();
@@ -99,11 +100,25 @@ function createList() {
   toDoListCreator(newList);
 }
 
-// function loadPopulation() {
-//   for (var i = 0; i < storageArray.length; i++) {
-//     toDoListCreator(storageArray[i]);
+// function arrayParse() {
+//   if(localStorage.length === 0){
+//     return
+//   } else {
+//   var newArray = JSON.parse(localStorage.getItem('array')).map(function(ideaList){
+//     return new ToDoList(ideaList.id, ideaList.title, ideaList.tasks, ideaList.urgent)
+//   })
+//   console.log('new addition', ideaList.id);
+//   console.log(newArray)
+//   storageArray = newArray;
+//   loadPopulation()
 //   }
 // }
+
+function loadPopulation() {
+  for (var i = 0; i < storageArray.length; i++) {
+    toDoListCreator(storageArray[i]);
+  }
+}
 
 function newTaskCreator(taskObject) {
   // debugger;
@@ -120,7 +135,7 @@ function newTaskCreator(taskObject) {
 }
 
 function toDoListCreator(obj) {
-  debugger;
+  // debugger;
   var newCard = mainListen.insertAdjacentHTML('afterbegin', `<article class="article" data-id=${obj.id}>
       <h2> ${obj.title} </h2>
       <div class="article__div__one">
