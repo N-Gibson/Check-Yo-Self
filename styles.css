@@ -104,7 +104,8 @@ button:hover {
 }
 
 .aside__new__idea {
-  display: flex;
+  list-style-type: none;
+  padding: 0px;
 }
 
 .aside__append__idea {
@@ -150,6 +151,10 @@ button:hover {
   margin: 30px auto 30px auto;
 }
 
+button:disabled {
+  background-color: lightgrey;
+}
+
 .bottom__button__container {
   border-top: 2px solid #3F6477;
 }
@@ -157,8 +162,33 @@ button:hover {
 /*Main*/
 
 main {
+  border: 2px solid #476D80;
+  border-left: none;
+  border-top: none;
+  columns: 2 auto;
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
+  /*flex-wrap: wrap;*/
+  height: 100%;
+}
+
+.prompt__container {
+  background-color: #1F1E3D;
+  display: flex;
+  height: 100px;
+  margin: 30px;
+  width: 100%;
+}
+
+.main__idea__prompt {
+  color: #FFFFFF;
+  font-size: 1.7em;
+  font-weight: 800;
+  margin: auto auto auto auto;
+}
+
+.prompt__span {
+  color: #FFC30C;
 }
 
 /*Article*/
@@ -167,6 +197,8 @@ article {
   background-color: #FFFFFF;
   border: 2px solid #C8D3D9;
   margin: 30px;
+  padding: 2px;
+  width: 45%;
 }
 
 h2 {
