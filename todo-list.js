@@ -1,14 +1,13 @@
-class toDoList {
+class ToDoList {
   constructor(id, title, tasks, urgent) {
-    this.id = id || Date.Now();
+    this.id = id;
     this.title = title;
     this.tasks = tasks;
-    this.urgent = urgent || false
+    this.urgent = urgent;
   }
 
   saveToStorage(toDoLists) {
-  var lists = JSON.stringify(toDoLists);
-  localStorage.setItem('toDoArray', lists);
+  localStorage.setItem('array', JSON.stringify(storageArray))
   }
 
   deleteFromStorage() {
@@ -23,5 +22,13 @@ class toDoList {
 
 updateTask() {
 // (should update a task’s content and if it has been completed)
+  }
+}
+
+class Task {
+  constructor(id, task, checkStatus){
+    this.id = Date.now() || this.id;
+    this.task = itemInput.value;
+    this.checkStatus = false;
   }
 }

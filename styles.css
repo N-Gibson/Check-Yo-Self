@@ -71,7 +71,6 @@ span {
 aside {
   align-self: center;
   background-color: #597A8B;
-  border-right: 2px solid #3F6477;
   float: left;
   height: 100vh;
   width: 30%;
@@ -163,7 +162,6 @@ button:disabled {
 
 main {
   border: 2px solid #476D80;
-  border-left: none;
   border-top: none;
   columns: 2 auto;
   display: flex;

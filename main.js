@@ -1,8 +1,8 @@
-// Variables
+// Global variables
 var storageArray = [];
+var taskStorrageArray = [];
 var asideListen = document.querySelector('.aside');
 var mainListen = document.querySelector('.main');
-// var articlePopulation = document.querySelector('.article');
 var newListItem = document.querySelector('.aside__new__idea');
 var titleInput = document.querySelector('.aside__input__task');
 var itemInput = document.querySelector('.aside__add__task');
@@ -10,143 +10,41 @@ var plusButton = document.querySelector('.aside__image__plus');
 var taskButton = document.getElementById('make__task__list');
 var clearButton = document.getElementById('clear__all');
 var listItem = document.querySelector('li__append');
-// var listPTask = document.querySelector('aside__append__idea');
-// Event Listeners
 
-// asideListen.addEventListener('click', asideAll);
+// Event listeners
 mainListen.addEventListener('click', mainAll);
-plusButton.addEventListener('click', plusAll);
+asideListen.addEventListener('click', asideAll);
 taskButton.addEventListener('click', taskAll);
+plusButton.addEventListener('click', plusAll);
 clearButton.addEventListener('click', clearAll);
-// titleInput.addEventListener('keyup', titleInputKeyup);
-// itemInput.addEventListener('keyup', itemInputKeyup);
 
-// Functions on page load
+// Main event listener
+function mainAll(){
 
-makeTaskListEnable();
-clearAllEnable();
-promptToDo();
-arrayParse();
-
-
-function clearAllEnable() {
-  // if(titleInput.value === '' || itemInput === '') {
-  //   clearButton.disabled = false;
-  // } else {
-    clearButton.disabled = false;
-  // }
-} 
-
-function arrayParse() {
-  if(localStorage.length === 0){
-    return
-  } else {
-  var newArray = JSON.parse(localStorage.getItem('toDoArray')).map(function(toDoList){
-    return new toDoList(storageArray.id, storageArray.title, storageArray.tasks, storageArray.urgent)
-  })
-  console.log(newArray)
-  storageArray = newArray;
-  persistIdeas();
-  }
 }
 
-function persistIdeas() {
-  for (var i = 0; i < storageArray.length; i++) {
-    toDoCardCreator(storageArray[i]);
-  }
+function asideAll(){
+  // deleteTask(event);
 }
 
-// Title related Functions
-
-function titleInputKeyup() {
-  makeTaskListEnable();
-  clearAllEnable();
-}
-
-// Task related Functions
-
-function itemInputKeyup(){
-  makeTaskListEnable();
-  clearAllEnable();
+// Task button functions
+function taskAll() {
+  createList()
+  // toDoListCreator(ToDoList);
+  clearTaskTitle();
+  clearTaskInput();
 }
 
 // Plus button Functions
-
 function plusAll() {
-  // newIdeaCreator();
-  ideaObject()
+  newTaskCreator(Task);
   clearTaskInput();
 }
 
-function ideaObject() {
-  var newIdeaObject = {
-    title: titleInput.value,
-    task: itemInput.value,
-    id: Date.now(),
-    urgent: false,
-  }
-  newIdeaCreator(newIdeaObject)
-}
+// Clearing functions
 
-function newIdeaCreator(ideaObject) {
-  if(itemInput.value === '' || newListItem === undefined) {
-    return
-  } else {
-    console.log(ideaObject);
-  newListItem.insertAdjacentHTML('afterbegin', `<li class="li__append" data-id=${ideaObject.id}> <input class="aside__image__delete svg" type="image" src="images/delete.svg" alt="delete the new task"></input>
-      <p class="aside__append__idea"> ${ideaObject.task} </p> </li>`)
-  }
-}
+function clearAll(){
 
-// Task button Functions
-
-function taskAll() {
-  newListInstantiator();
-  clearTaskTitle();
-  clearTaskInput();
-}
-
-function newListInstantiator() {
-  var newToDoList = new toDoList(Date.now(), titleInput.value, itemInput.value, false);
-  storageArray.push(newToDoList);
-  newToDoList.saveToStorage();
-  toDoCardCreator(newToDoList);
-}
-
-
-function toDoCardCreator(toDoList) {
-  mainListen.insertAdjacentHTML('afterbegin', `<article class="article" data-id=${toDoList.id}>
-      <h2> ${toDoList.title} </h2>
-      <div class="article__div__one">
-        <input class="article__image__checkbox svg" type="image" src="images/checkbox.svg" alt="mark task as complete"></input>
-      <p> ${toDoList.tasks} </p>
-      <section class="article__section__footer">
-        <div class="article__section__urgent">
-          <input class="article__image__urgent svg" type="image" src="images/urgent.svg" alt="mark task as urgent"></input>
-          <p class="article__section__p__urgent"> URGENT </p>
-        </div>
-        <div class="article__section__delete">
-          <input class="article__image__delete svg" type="image" src="images/delete.svg" alt="delete the task card"></input>
-          <p class="article__section__p__delete"> DELETE </p>
-        </div>
-      </section>
-    </article>`)
-} 
-      // </div>
-      // <div class="article__div__two">
-      //   <input class="articel__image__checkbox svg" type="image" src="images/checkbox.svg" alt="mark task as complete"></input>
-      //   <p> ${toDoList.tasks} </p>
-      // </div>
-      // <div class="article__div__three">
-      //   <input class="articel__image__checkbox svg" type="image" src="images/checkbox.svg" alt="mark task as complete"></input>
-      //   <p> ${toDoList.tasks} </p>
-      // </div>
-
-// Clear button Functions
-
-function clearAll() {
-  clearTaskInput();
-  clearTaskTitle();
 }
 
 function clearTaskTitle() {
@@ -160,6 +58,23 @@ function clearTaskInput() {
   makeTaskListEnable()
   clearAllEnable();
 }
+
+// function deleteTask(event) {
+//   event.target.closest(listItem).remove()
+// }
+
+// Functions on page load
+  makeTaskListEnable();
+  clearAllEnable();
+  promptToDo();
+
+function clearAllEnable() {
+  // if(titleInput.value === '' || itemInput === '') {
+  //   clearButton.disabled = false;
+  // } else {
+    clearButton.disabled = false;
+  // }
+} 
 
 function makeTaskListEnable() {
   // if(titleInput.value === '' || newListItem.value === undefined) {
@@ -177,26 +92,52 @@ function promptToDo() {
   }
 }
 
-// Functions on aside
-
-// function asideAll() {
-  // newIdeaCreator(event)
-// }
-
-// Functions on main
-
-function mainAll() {
-  // getId(event);
-  // getIndex(event);
-  // deleteFromStorage();
-  deleteCard(event);
+function createList() {
+  var newList = new ToDoList(Date.now(), titleInput.value, taskStorrageArray, false)
+  storageArray.push(newList);
+  newList.saveToStorage();
+  toDoListCreator(newList);
 }
 
+// function loadPopulation() {
+//   for (var i = 0; i < storageArray.length; i++) {
+//     toDoListCreator(storageArray[i]);
+//   }
+// }
 
-function deleteCard(event) {
-  if(event.target.className === 'article__image__delete') {
-  e.target.closest('.article').remove();
-  storageArray[index].deleteFromStorage(index)
-  ideaPrompter();
-    }
+function newTaskCreator(taskObject) {
+  // debugger;
+  if(itemInput.value === '' || newListItem === undefined) {
+    return
+  } else {
+  var newTask = new Task(Date.now(), itemInput.value, false)
+  var individualTask = newListItem.insertAdjacentHTML('afterbegin', `<li class="li__append" data-id=${newTask.id}> <input class="aside__image__delete svg" type="image" src="images/delete.svg" alt="delete the new task"></input>
+      <p class="aside__append__idea"> ${newTask.task} </p> </li>`)
   }
+  console.log(newTask.task);
+  console.log(newTask.id);
+  taskStorrageArray.push(newTask);
+}
+
+function toDoListCreator(obj) {
+  debugger;
+  var newCard = mainListen.insertAdjacentHTML('afterbegin', `<article class="article" data-id=${obj.id}>
+      <h2> ${obj.title} </h2>
+      <div class="article__div__one">
+        <input class="article__image__checkbox svg" type="image" src="images/checkbox.svg" alt="mark task as complete"></input>
+      <p> ${obj.tasks} </p>
+      <section class="article__section__footer">
+        <div class="article__section__urgent">
+          <input class="article__image__urgent svg" type="image" src="images/urgent.svg" alt="mark task as urgent"></input>
+          <p class="article__section__p__urgent"> URGENT </p>
+        </div>
+        <div class="article__section__delete">
+          <input class="article__image__delete svg" type="image" src="images/delete.svg" alt="delete the task card"></input>
+          <p class="article__section__p__delete"> DELETE </p>
+        </div>
+      </section>
+    </article>`)
+  console.log(obj.id)
+  console.log(obj.title)
+  console.log(obj.tasks)
+}
