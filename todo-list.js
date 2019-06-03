@@ -6,9 +6,9 @@ class toDoList {
     this.urgent = urgent || false
   }
 
-  saveToStorage() {
-    localStorage.setItem('storageArray', JSON.stringify(storageArray));
-    console.log(storageArray)
+  saveToStorage(toDoLists) {
+  var lists = JSON.stringify(toDoLists);
+  localStorage.setItem('toDoArray', lists);
   }
 
   deleteFromStorage() {
