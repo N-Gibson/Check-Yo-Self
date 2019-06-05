@@ -1,9 +1,9 @@
 // Global variables
-var storageArray = [];
-var taskStorrageArray = [];
+var storageArray = JSON.parse(localStorage.getItem('array')) || [];
+var taskStorageArray = [];
 var asideListen = document.querySelector('.aside');
 var mainListen = document.querySelector('.main');
-var newListItem = document.querySelector('.aside__new__idea');
+var newListItem = document.querySelector('.aside__new__task');
 var titleInput = document.querySelector('.aside__input__task');
 var itemInput = document.querySelector('.aside__add__task');
 var plusButton = document.querySelector('.aside__image__plus');
@@ -20,11 +20,10 @@ clearButton.addEventListener('click', clearAll);
 
 // Main event listener
 function mainAll(){
-
 }
 
 function asideAll(){
-  // deleteTask(event);
+  deleteTask(event)
 }
 
 // Task button functions
@@ -33,6 +32,8 @@ function taskAll() {
   // toDoListCreator(ToDoList);
   clearTaskTitle();
   clearTaskInput();
+  clearTaskList()
+  promptToDo();
 }
 
 // Plus button Functions
@@ -42,9 +43,10 @@ function plusAll() {
 }
 
 // Clearing functions
-
 function clearAll(){
-
+  clearTaskTitle();
+  clearTaskInput();
+  clearTaskList()
 }
 
 function clearTaskTitle() {
@@ -59,60 +61,55 @@ function clearTaskInput() {
   clearAllEnable();
 }
 
-// function deleteTask(event) {
-//   event.target.closest(listItem).remove()
-// }
+function deleteTask(event) {
+  if (event.target.closest('.li__append')) {
+    event.target.closest('.li__append').remove();
+    event.preventDefault();
+  }
+}
 
 // Functions on page load
-  // arrayParse();
+  arrayParse();
   makeTaskListEnable();
   clearAllEnable();
   promptToDo();
 
 function clearAllEnable() {
-  // if(titleInput.value === '' || itemInput === '') {
-  //   clearButton.disabled = false;
-  // } else {
+  if(titleInput.value === '' || taskStorageArray === []) {
+    clearButton.disabled = true;
+  } else {
     clearButton.disabled = false;
-  // }
+  }
 } 
 
 function makeTaskListEnable() {
-  // if(titleInput.value === '' || newListItem.value === undefined) {
-  //   taskButton.disabled = false;
-  // } else {
+  if(titleInput.value === '' || taskStorageArray.length === 0) {
     taskButton.disabled = false;
-  // }
+  } else {
+    taskButton.disabled = false;
+  }
 }
 
 function promptToDo() {
-  if(localStorage.length === 0) {
-    mainListen.insertAdjacentHTML('afterbegin', `<div class="prompt__container"><p class="main__idea__prompt"> Please create a <span class="prompt__span"> To-Do </span> List! </p> </div>`)
+  if(storageArray.length === 0) {
+    mainListen.insertAdjacentHTML('afterbegin', `<div class="prompt__container"><p class="main__task__prompt"> Please create a <span class="prompt__span"> To-Do </span> List! </p> </div>`)
   } else {
     return
   }
 }
 
+function clearTaskList() {
+  taskStorageArray = '';
+  removeElement(listItem);
+}
+
 function createList() {
-  var newList = new ToDoList(Date.now(), titleInput.value, taskStorrageArray, false)
+  var newList = new ToDoList(Date.now(), titleInput.value, taskStorageArray, false)
   storageArray.push(newList);
   newList.saveToStorage();
   toDoListCreator(newList);
+  taskStorageArray = '';
 }
-
-// function arrayParse() {
-//   if(localStorage.length === 0){
-//     return
-//   } else {
-//   var newArray = JSON.parse(localStorage.getItem('array')).map(function(ideaList){
-//     return new ToDoList(ideaList.id, ideaList.title, ideaList.tasks, ideaList.urgent)
-//   })
-//   console.log('new addition', ideaList.id);
-//   console.log(newArray)
-//   storageArray = newArray;
-//   loadPopulation()
-//   }
-// }
 
 function loadPopulation() {
   for (var i = 0; i < storageArray.length; i++) {
@@ -121,26 +118,20 @@ function loadPopulation() {
 }
 
 function newTaskCreator(taskObject) {
-  // debugger;
   if(itemInput.value === '' || newListItem === undefined) {
     return
   } else {
   var newTask = new Task(Date.now(), itemInput.value, false)
-  var individualTask = newListItem.insertAdjacentHTML('afterbegin', `<li class="li__append" data-id=${newTask.id}> <input class="aside__image__delete svg" type="image" src="images/delete.svg" alt="delete the new task"></input>
-      <p class="aside__append__idea"> ${newTask.task} </p> </li>`)
+  var individualTask = newListItem.insertAdjacentHTML('beforeend', `<li class="li__append" data-id=${newTask.id}> <input class="aside__image__delete svg" type="image" src="images/delete.svg" alt="delete the new task"></input>
+      <p class="aside__append__task"> ${newTask.task} </p> </li>`)
   }
-  console.log(newTask.task);
-  console.log(newTask.id);
-  taskStorrageArray.push(newTask);
+  taskStorageArray.push(newTask);
 }
 
 function toDoListCreator(obj) {
-  // debugger;
-  var newCard = mainListen.insertAdjacentHTML('afterbegin', `<article class="article" data-id=${obj.id}>
+  mainListen.insertAdjacentHTML('afterbegin', `<article class="article" data-id=${obj.id}>
       <h2> ${obj.title} </h2>
-      <div class="article__div__one">
-        <input class="article__image__checkbox svg" type="image" src="images/checkbox.svg" alt="mark task as complete"></input>
-      <p> ${obj.tasks} </p>
+        ${addTaskList(obj)}
       <section class="article__section__footer">
         <div class="article__section__urgent">
           <input class="article__image__urgent svg" type="image" src="images/urgent.svg" alt="mark task as urgent"></input>
@@ -153,6 +144,16 @@ function toDoListCreator(obj) {
       </section>
     </article>`)
   console.log(obj.id)
-  console.log(obj.title)
+  console.log(obj)
   console.log(obj.tasks)
+}
+
+function addTaskList(taskStorage) {
+  var currentList = '';
+  for(var i = 0; i < taskStorage.length; i++) {
+    currentList +=
+  `<input class="article__image__checkbox svg" type="image" src="images/checkbox.svg" alt="mark task as complete"></input>
+      <p data-id ${taskStorage.Task.task[i].id}> ${taskStorage.Task.tasks[i].task} </p>`
+  }
+  return currentList;
 }
