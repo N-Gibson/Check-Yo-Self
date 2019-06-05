@@ -245,6 +245,42 @@ p {
 @media screen and (max-width: 850px) {
   .aside {
     display: block;
+    height: 70vh;
     width: 100%;
+  }
+  
+  .header {
+    flex-wrap: wrap;
+    height: 180px;
+  }
+
+  h1 {
+    margin: 55px auto auto auto;
+    padding: 0px;
+  }
+
+  .header__input__search__container {
+    margin: auto auto auto auto;
+    padding: 0px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  h1 {
+    font-size: 2.5em;
+  }
+
+  aside {
+    height: 60vh;
+  }
+
+  .header__input__search__container {
+    width: 80%;
+  }
+
+  .article {
+    display: block;
+    margin: 10px;
+    width: 95%;
   }
 }

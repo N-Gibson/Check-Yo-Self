@@ -68,7 +68,6 @@ function deleteTask(event) {
 }
 
 // Functions on page load
-  arrayParse();
   makeTaskListEnable();
   clearAllEnable();
   promptToDo();
@@ -83,7 +82,7 @@ function clearAllEnable() {
 
 function makeTaskListEnable() {
   if(titleInput.value === '' || taskStorageArray.length === 0) {
-    taskButton.disabled = false;
+    taskButton.disabled = true;
   } else {
     taskButton.disabled = false;
   }
@@ -129,8 +128,9 @@ function newTaskCreator(taskObject) {
 
 function toDoListCreator(obj) {
   mainListen.insertAdjacentHTML('afterbegin', `<article class="article" data-id=${obj.id}>
-      <h2> ${obj.title} </h2>
-        ${addTaskList(obj)}
+      <h2> ${titleInput.value} </h2>
+        <input class="article__image__checkbox svg" type="image" src="images/checkbox.svg" alt="mark task as complete"></input>
+      <p data-id> ${itemInput.value} </p>
       <section class="article__section__footer">
         <div class="article__section__urgent">
           <input class="article__image__urgent svg" type="image" src="images/urgent.svg" alt="mark task as urgent"></input>
@@ -149,7 +149,7 @@ function addTaskList(taskStorage) {
   for(var i = 0; i < taskStorage.length; i++) {
     currentList +=
   `<input class="article__image__checkbox svg" type="image" src="images/checkbox.svg" alt="mark task as complete"></input>
-      <p data-id ${taskStorage.task[i].id.value}> ${taskStorage.tasks[i].task.value} </p>`
+      <p data-id ${taskStorage.task[i].id}> ${taskStorage.tasks[i].task} </p>`
   }
   return currentList;
 }
