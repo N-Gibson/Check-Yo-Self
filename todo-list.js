@@ -1,17 +1,18 @@
-class toDoList {
-  constructor(id, title, tasks, urgent) {
-    this.id = id || Date.Now();
-    this.title = title;
-    this.tasks = tasks;
-    this.urgent = urgent || false
+class ToDoList {
+  constructor(obj) {
+    this.id = obj.id;
+    this.title = obj.title;
+    this.tasks = obj.tasks || [];
+    this.urgent = obj.urgent || false;
   }
 
   saveToStorage(toDoLists) {
-  var lists = JSON.stringify(toDoLists);
-  localStorage.setItem('toDoArray', lists);
+  localStorage.setItem('array', JSON.stringify(storageArray))
   }
 
-  deleteFromStorage() {
+  deleteFromStorage(index) {
+    storageArray.splice(index, 1, );
+    localStorage.setItem('array', JSON.stringify(storageArray));
     if(storageArray.length === 0) {
       localStorage.clear();
     }
@@ -23,5 +24,13 @@ class toDoList {
 
 updateTask() {
 // (should update a task’s content and if it has been completed)
+  }
+}
+
+class Task {
+  constructor(id, task, checkStatus){
+    this.id = Date.now() || this.id;
+    this.task = itemInput.value;
+    this.checkStatus = false;
   }
 }

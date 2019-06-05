@@ -1,125 +1,136 @@
-// Variables
-var storageArray = [];
+// Global variables
+var storageArray = JSON.parse(localStorage.getItem('array')) || [];
+var taskStorageArray = [];
 var asideListen = document.querySelector('.aside');
 var mainListen = document.querySelector('.main');
-// var articlePopulation = document.querySelector('.article');
-var newListItem = document.querySelector('.aside__new__idea');
+var newListItem = document.querySelector('.aside__new__task');
 var titleInput = document.querySelector('.aside__input__task');
 var itemInput = document.querySelector('.aside__add__task');
 var plusButton = document.querySelector('.aside__image__plus');
 var taskButton = document.getElementById('make__task__list');
 var clearButton = document.getElementById('clear__all');
 var listItem = document.querySelector('li__append');
-// var listPTask = document.querySelector('aside__append__idea');
-// Event Listeners
 
-// asideListen.addEventListener('click', asideAll);
+// Event listeners
 mainListen.addEventListener('click', mainAll);
-plusButton.addEventListener('click', plusAll);
+asideListen.addEventListener('click', asideAll);
 taskButton.addEventListener('click', taskAll);
+plusButton.addEventListener('click', plusAll);
 clearButton.addEventListener('click', clearAll);
-// titleInput.addEventListener('keyup', titleInputKeyup);
-// itemInput.addEventListener('keyup', itemInputKeyup);
 
-// Functions on page load
-
-makeTaskListEnable();
-clearAllEnable();
-promptToDo();
-arrayParse();
-
-
-function clearAllEnable() {
-  // if(titleInput.value === '' || itemInput === '') {
-  //   clearButton.disabled = false;
-  // } else {
-    clearButton.disabled = false;
-  // }
-} 
-
-function arrayParse() {
-  if(localStorage.length === 0){
-    return
-  } else {
-  var newArray = JSON.parse(localStorage.getItem('toDoArray')).map(function(toDoList){
-    return new toDoList(storageArray.id, storageArray.title, storageArray.tasks, storageArray.urgent)
-  })
-  console.log(newArray)
-  storageArray = newArray;
-  persistIdeas();
-  }
+// Main event listener
+function mainAll() {
 }
 
-function persistIdeas() {
-  for (var i = 0; i < storageArray.length; i++) {
-    toDoCardCreator(storageArray[i]);
-  }
+function asideAll() {
+  deleteTask(event);
 }
 
-// Title related Functions
-
-function titleInputKeyup() {
-  makeTaskListEnable();
-  clearAllEnable();
-}
-
-// Task related Functions
-
-function itemInputKeyup(){
-  makeTaskListEnable();
-  clearAllEnable();
+// Task button functions
+function taskAll() {
+  createList();
+  clearTaskTitle();
+  clearTaskInput();
+  clearTaskList()
+  promptToDo();
 }
 
 // Plus button Functions
-
 function plusAll() {
-  // newIdeaCreator();
-  ideaObject()
+  newTaskCreator(Task);
   clearTaskInput();
 }
 
-function ideaObject() {
-  var newIdeaObject = {
-    title: titleInput.value,
-    task: itemInput.value,
-    id: Date.now(),
-    urgent: false,
-  }
-  newIdeaCreator(newIdeaObject)
+// Clearing functions
+function clearAll() {
+  clearTaskTitle();
+  clearTaskInput();
+  clearTaskList();
 }
 
-function newIdeaCreator(ideaObject) {
+function clearTaskTitle() {
+  titleInput.value = '';
+  makeTaskListEnable();
+  clearAllEnable();
+}
+
+function clearTaskInput() {
+  itemInput.value = '';
+  makeTaskListEnable();
+  clearAllEnable();
+}
+
+function deleteTask(event) {
+  if (event.target.closest('.li__append')) {
+    event.target.closest('.li__append').remove();
+    event.preventDefault();
+  }
+}
+
+// Functions on page load
+  arrayParse();
+  makeTaskListEnable();
+  clearAllEnable();
+  promptToDo();
+
+function clearAllEnable() {
+  if(titleInput.value === '' || taskStorageArray === []) {
+    clearButton.disabled = true;
+  } else {
+    clearButton.disabled = false;
+  }
+} 
+
+function makeTaskListEnable() {
+  if(titleInput.value === '' || taskStorageArray.length === 0) {
+    taskButton.disabled = false;
+  } else {
+    taskButton.disabled = false;
+  }
+}
+
+function promptToDo() {
+  if(storageArray.length === 0) {
+    mainListen.insertAdjacentHTML('afterbegin', `<div class="prompt__container"><p class="main__task__prompt"> Please create a <span class="prompt__span"> To-Do </span> List! </p> </div>`)
+  } else {
+    return
+  }
+}
+
+function clearTaskList() {
+  taskStorageArray = '';
+  removeElement(listItem);
+}
+
+function createList() {
+  var newList = new ToDoList(Date.now(), titleInput.value, taskStorageArray, false)
+  storageArray.push(newList);
+  newList.saveToStorage();
+  toDoListCreator(newList);
+  taskStorageArray = '';
+}
+
+function loadPopulation() {
+  for (var i = 0; i < storageArray.length; i++) {
+    toDoListCreator(storageArray[i]);
+  }
+}
+
+function newTaskCreator(taskObject) {
   if(itemInput.value === '' || newListItem === undefined) {
     return
   } else {
-    console.log(ideaObject);
-  newListItem.insertAdjacentHTML('afterbegin', `<li class="li__append" data-id=${ideaObject.id}> <input class="aside__image__delete svg" type="image" src="images/delete.svg" alt="delete the new task"></input>
-      <p class="aside__append__idea"> ${ideaObject.task} </p> </li>`)
+  var newTask = new Task(Date.now(), itemInput.value, false)
+  var individualTask = newListItem.insertAdjacentHTML('beforeend', `<li class="li__append" data-id=${newTask.id}> <input class="aside__image__delete svg" type="image" src="images/delete.svg" alt="delete the new task"></input>
+      <p class="aside__append__task"> ${newTask.task} </p> </li>`)
   }
+  taskStorageArray.push(newTask);
 }
 
-// Task button Functions
-
-function taskAll() {
-  newListInstantiator();
-  clearTaskTitle();
-  clearTaskInput();
-}
-
-function newListInstantiator() {
-  var newToDoList = new toDoList(Date.now(), titleInput.value, itemInput.value, false);
-  storageArray.push(newToDoList);
-  newToDoList.saveToStorage();
-  toDoCardCreator(newToDoList);
-}
-
-
-function toDoCardCreator(toDoList) {
-  mainListen.insertAdjacentHTML('afterbegin', `<article class="article" data-id=${toDoList.id}>
-      <h2> ${toDoList.title} </h2>
-      <div class="article__div__one">
-        <input class="article__image__checkbox svg" type="image" src="images/checkbox.svg" alt="mark task as complete"></input>
-      <p> ${toDoList.tasks} </p>
+function toDoListCreator(obj) {
+  mainListen.insertAdjacentHTML('afterbegin', `<article class="article" data-id=${obj.id}>
+      <h2> ${obj.title} </h2>
+        ${addTaskList(obj)}
       <section class="article__section__footer">
         <div class="article__section__urgent">
           <input class="article__image__urgent svg" type="image" src="images/urgent.svg" alt="mark task as urgent"></input>
@@ -131,72 +142,14 @@ function toDoCardCreator(toDoList) {
         </div>
       </section>
     </article>`)
-} 
-      // </div>
-      // <div class="article__div__two">
-      //   <input class="articel__image__checkbox svg" type="image" src="images/checkbox.svg" alt="mark task as complete"></input>
-      //   <p> ${toDoList.tasks} </p>
-      // </div>
-      // <div class="article__div__three">
-      //   <input class="articel__image__checkbox svg" type="image" src="images/checkbox.svg" alt="mark task as complete"></input>
-      //   <p> ${toDoList.tasks} </p>
-      // </div>
-
-// Clear button Functions
-
-function clearAll() {
-  clearTaskInput();
-  clearTaskTitle();
 }
 
-function clearTaskTitle() {
-  titleInput.value = '';
-  makeTaskListEnable()
-  clearAllEnable();
-}
-
-function clearTaskInput() {
-  itemInput.value = '';
-  makeTaskListEnable()
-  clearAllEnable();
-}
-
-function makeTaskListEnable() {
-  // if(titleInput.value === '' || newListItem.value === undefined) {
-  //   taskButton.disabled = false;
-  // } else {
-    taskButton.disabled = false;
-  // }
-}
-
-function promptToDo() {
-  if(localStorage.length === 0) {
-    mainListen.insertAdjacentHTML('afterbegin', `<div class="prompt__container"><p class="main__idea__prompt"> Please create a <span class="prompt__span"> To-Do </span> List! </p> </div>`)
-  } else {
-    return
+function addTaskList(taskStorage) {
+  var currentList = '';
+  for(var i = 0; i < taskStorage.length; i++) {
+    currentList +=
+  `<input class="article__image__checkbox svg" type="image" src="images/checkbox.svg" alt="mark task as complete"></input>
+      <p data-id ${taskStorage.task[i].id.value}> ${taskStorage.tasks[i].task.value} </p>`
   }
+  return currentList;
 }
-
-// Functions on aside
-
-// function asideAll() {
-  // newIdeaCreator(event)
-// }
-
-// Functions on main
-
-function mainAll() {
-  // getId(event);
-  // getIndex(event);
-  // deleteFromStorage();
-  deleteCard(event);
-}
-
-
-function deleteCard(event) {
-  if(event.target.className === 'article__image__delete') {
-  e.target.closest('.article').remove();
-  storageArray[index].deleteFromStorage(index)
-  ideaPrompter();
-    }
-  }

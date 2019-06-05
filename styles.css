@@ -71,7 +71,6 @@ span {
 aside {
   align-self: center;
   background-color: #597A8B;
-  border-right: 2px solid #3F6477;
   float: left;
   height: 100vh;
   width: 30%;
@@ -103,12 +102,12 @@ button:hover {
   margin-right: 10px;
 }
 
-.aside__new__idea {
+.aside__new__task {
   list-style-type: none;
   padding: 0px;
 }
 
-.aside__append__idea {
+.aside__append__task {
   color: #FFFFFF;
 }
 
@@ -127,7 +126,7 @@ button:hover {
 }
 
 .aside__label__button__title,
-.aside__new__idea,
+.aside__new__task,
 .aside__label__button__item {
   margin: 10px 20px;
 }
@@ -153,6 +152,7 @@ button:hover {
 
 button:disabled {
   background-color: lightgrey;
+  color: black;
 }
 
 .bottom__button__container {
@@ -163,12 +163,10 @@ button:disabled {
 
 main {
   border: 2px solid #476D80;
-  border-left: none;
   border-top: none;
   columns: 2 auto;
   display: flex;
   flex-flow: column wrap;
-  /*flex-wrap: wrap;*/
   height: 100%;
 }
 
@@ -177,10 +175,10 @@ main {
   display: flex;
   height: 100px;
   margin: 30px;
-  width: 100%;
+  width: auto;
 }
 
-.main__idea__prompt {
+.main__task__prompt {
   color: #FFFFFF;
   font-size: 1.7em;
   font-weight: 800;
@@ -196,7 +194,7 @@ main {
 article {
   background-color: #FFFFFF;
   border: 2px solid #C8D3D9;
-  margin: 30px;
+  margin: 30px 15px;
   padding: 2px;
   width: 45%;
 }
@@ -214,12 +212,6 @@ h2 {
 
 p {
   display: inline;
-}
-
-.article__div__one,
-.article__div__two,
-.article__div__three {
-  margin: 30px 10px;
 }
 
 .article__section__footer {
@@ -246,4 +238,13 @@ p {
   display: block;
   font-size: .7em;
   margin: 0;
+}
+
+/*Media query*/
+
+@media screen and (max-width: 850px) {
+  .aside {
+    display: block;
+    width: 100%;
+  }
 }
