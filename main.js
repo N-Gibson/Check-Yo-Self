@@ -48,6 +48,12 @@ function clearAll() {
   clearTaskList();
 }
 
+// Functions on page load
+  loadPopulation()
+  makeTaskListEnable();
+  clearAllEnable();
+  promptToDo();
+
 function clearTaskTitle() {
   titleInput.value = '';
   makeTaskListEnable();
@@ -66,11 +72,6 @@ function deleteTask(event) {
     event.preventDefault();
   }
 }
-
-// Functions on page load
-  makeTaskListEnable();
-  clearAllEnable();
-  promptToDo();
 
 function clearAllEnable() {
   if(titleInput.value === '' || taskStorageArray === []) {
