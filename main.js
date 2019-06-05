@@ -22,6 +22,7 @@ clearButton.addEventListener('click', clearAll);
 function mainAll() {
 }
 
+// Aside event listener
 function asideAll() {
   deleteTask(event);
 }
@@ -129,9 +130,9 @@ function newTaskCreator(taskObject) {
 
 function toDoListCreator(obj) {
   mainListen.insertAdjacentHTML('afterbegin', `<article class="article" data-id=${obj.id}>
-      <h2> ${titleInput.value} </h2>
+      <h2> ${obj.title} </h2>
         <input class="article__image__checkbox svg" type="image" src="images/checkbox.svg" alt="mark task as complete"></input>
-      <p data-id> ${itemInput.value} </p>
+      <p data-id> ${obj.task} </p>
       <section class="article__section__footer">
         <div class="article__section__urgent">
           <input class="article__image__urgent svg" type="image" src="images/urgent.svg" alt="mark task as urgent"></input>
