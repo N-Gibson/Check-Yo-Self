@@ -19,17 +19,16 @@ plusButton.addEventListener('click', plusAll);
 clearButton.addEventListener('click', clearAll);
 
 // Main event listener
-function mainAll(){
+function mainAll() {
 }
 
-function asideAll(){
-  deleteTask(event)
+function asideAll() {
+  deleteTask(event);
 }
 
 // Task button functions
 function taskAll() {
-  createList()
-  // toDoListCreator(ToDoList);
+  createList();
   clearTaskTitle();
   clearTaskInput();
   clearTaskList()
@@ -43,21 +42,21 @@ function plusAll() {
 }
 
 // Clearing functions
-function clearAll(){
+function clearAll() {
   clearTaskTitle();
   clearTaskInput();
-  clearTaskList()
+  clearTaskList();
 }
 
 function clearTaskTitle() {
   titleInput.value = '';
-  makeTaskListEnable()
+  makeTaskListEnable();
   clearAllEnable();
 }
 
 function clearTaskInput() {
   itemInput.value = '';
-  makeTaskListEnable()
+  makeTaskListEnable();
   clearAllEnable();
 }
 
@@ -143,9 +142,6 @@ function toDoListCreator(obj) {
         </div>
       </section>
     </article>`)
-  console.log(obj.id)
-  console.log(obj)
-  console.log(obj.tasks)
 }
 
 function addTaskList(taskStorage) {
@@ -153,7 +149,7 @@ function addTaskList(taskStorage) {
   for(var i = 0; i < taskStorage.length; i++) {
     currentList +=
   `<input class="article__image__checkbox svg" type="image" src="images/checkbox.svg" alt="mark task as complete"></input>
-      <p data-id ${taskStorage.Task.task[i].id}> ${taskStorage.Task.tasks[i].task} </p>`
+      <p data-id ${taskStorage.task[i].id.value}> ${taskStorage.tasks[i].task.value} </p>`
   }
   return currentList;
 }
